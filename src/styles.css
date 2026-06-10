@@ -1,0 +1,146 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-gold: var(--gold);
+  --color-crimson: var(--crimson);
+  --font-display: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-body: "Lora", Georgia, serif;
+}
+
+:root {
+  --radius: 0.25rem;
+
+  /* Vintage palette */
+  --paper: oklch(0.94 0.025 80);       /* hârtie veche */
+  --ink: oklch(0.24 0.04 50);          /* sepia închisă */
+  --gold: oklch(0.72 0.11 75);         /* auriu */
+  --crimson: oklch(0.42 0.16 25);      /* roșu carmin */
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: oklch(0.97 0.02 80);
+  --card-foreground: var(--ink);
+  --popover: oklch(0.97 0.02 80);
+  --popover-foreground: var(--ink);
+  --primary: var(--crimson);
+  --primary-foreground: oklch(0.97 0.02 80);
+  --secondary: oklch(0.88 0.04 75);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.90 0.03 78);
+  --muted-foreground: oklch(0.42 0.04 50);
+  --accent: var(--gold);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.50 0.20 25);
+  --destructive-foreground: oklch(0.97 0.02 80);
+  --border: oklch(0.78 0.05 70);
+  --input: oklch(0.86 0.04 75);
+  --ring: var(--gold);
+}
+
+.dark {
+  --background: oklch(0.18 0.02 50);
+  --foreground: oklch(0.94 0.025 80);
+  --card: oklch(0.22 0.03 50);
+  --card-foreground: oklch(0.94 0.025 80);
+  --popover: oklch(0.22 0.03 50);
+  --popover-foreground: oklch(0.94 0.025 80);
+  --primary: var(--gold);
+  --primary-foreground: oklch(0.18 0.02 50);
+  --secondary: oklch(0.28 0.03 50);
+  --secondary-foreground: oklch(0.94 0.025 80);
+  --muted: oklch(0.28 0.03 50);
+  --muted-foreground: oklch(0.72 0.04 70);
+  --accent: var(--gold);
+  --accent-foreground: oklch(0.18 0.02 50);
+  --destructive: oklch(0.55 0.20 25);
+  --destructive-foreground: oklch(0.97 0.02 80);
+  --border: oklch(0.35 0.03 50);
+  --input: oklch(0.30 0.03 50);
+  --ring: var(--gold);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    background-image:
+      radial-gradient(at 20% 10%, oklch(0.92 0.05 75 / 0.4) 0px, transparent 50%),
+      radial-gradient(at 80% 90%, oklch(0.88 0.06 60 / 0.3) 0px, transparent 50%),
+      repeating-linear-gradient(0deg, transparent 0 3px, oklch(0 0 0 / 0.012) 3px 4px);
+  }
+
+  h1, h2, h3, h4, .display { font-family: var(--font-display); letter-spacing: 0.01em; }
+}
+
+@layer utilities {
+  .paper-card {
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 1px 0 oklch(1 0 0 / 0.5) inset, 0 8px 24px -16px oklch(0 0 0 / 0.25);
+  }
+  .gold-rule {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  }
+  .vintage-divider {
+    text-align: center;
+    color: var(--color-accent);
+    letter-spacing: 0.4em;
+  }
+  .ink-prose p { line-height: 1.75; margin-bottom: 0.9rem; text-indent: 1.25rem; }
+  .ink-prose p:first-of-type { text-indent: 0; }
+  .ink-prose p:first-of-type::first-letter {
+    font-family: var(--font-display);
+    font-size: 3.25rem;
+    float: left;
+    line-height: 0.9;
+    padding: 0.25rem 0.5rem 0 0;
+    color: var(--color-primary);
+  }
+  .quill-link {
+    color: var(--color-primary);
+    border-bottom: 1px dotted currentColor;
+  }
+  .quill-link:hover { color: var(--color-accent-foreground); border-bottom-color: var(--color-accent); }
+}
+
+@keyframes ink-spread {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { opacity: 1; }
+  100% { transform: scale(1); opacity: 0.85; }
+}
+.anim-ink { animation: ink-spread 1.2s ease-out both; }
